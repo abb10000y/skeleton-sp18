@@ -1,5 +1,3 @@
-import javax.sql.rowset.spi.SyncResolver;
-
 public class Deque<VariacneType> {
     
     public AList sentinelU;
@@ -22,6 +20,18 @@ public class Deque<VariacneType> {
            first = f;
            middle = m;
            end = e;
+        }
+
+        public VariacneType getfront(int index) {
+            if (index = 0) {
+                return this.middle;
+            }   this.end.getfront(index - 1);
+        }
+    
+        public VariacneType getnear(int index) {
+            if (index = 0) {
+                return this.middle;
+            }   this.first.getnear(index - 1);
         }
     }
 
@@ -68,7 +78,7 @@ public class Deque<VariacneType> {
         while (Q.end != null) {
                 System.out.print(Q.middle + " ");
                 Q = Q.end;
-            }             
+            }
         System.out.println("");
     }
 
@@ -111,7 +121,7 @@ public class Deque<VariacneType> {
                 index += 1;
             }
             return Q.middle;
-        } 
+        }
     }
 
     /*public static void main(String[] args) {
