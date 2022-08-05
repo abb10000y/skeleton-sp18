@@ -1,24 +1,44 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import java.lang.reflect.Type;
-
 public class TestAD {
 
     @Test
     public void TestCreateAD() {
         ArrayDeque<Integer> K = new ArrayDeque<>();
+        assertTrue(K.size == 0);
+        assertTrue(K.capacity == 1);
+        assertTrue(K.first == 0);
+        assertTrue(K.end == 0);
+
     }
 
     @Test
     public void TestAddFirst() {
         ArrayDeque<String> K = new ArrayDeque<>();
         K.addFirst("a");
-        if (K.AD[1] == "a") {
-            System.out.println("AddFirst OK");
-        } else {
-            System.out.println("AddFirst NG, should be: 1, real be: " + K.AD[1]);
-        }
+        assertTrue(K.size == 1);
+        assertTrue(K.capacity == 1);
+        assertTrue(K.first == K.capacity);
+        assertTrue(K.end == 0);
+        assertTrue(K.AD[K.first] == "a");
+        assertTrue(K.AD[K.end] == null);
+        K.addFirst("b");
+        assertTrue(K.size == 2);
+        assertTrue(K.capacity == 1);
+        assertTrue(K.first == 0);
+        assertTrue(K.end == 0);
+        assertTrue(K.AD[K.first] == "b");
+        assertTrue(K.AD[1] == "a");
+        K.addFirst("c");
+        assertTrue(K.size == 3);
+        assertTrue(K.capacity == 7);
+        assertTrue(K.first == 7);
+        assertTrue(K.end == 2);
+        assertTrue(K.AD[K.first] == "c");
+        assertTrue(K.AD[7] == "c");
+        assertTrue(K.AD[0] == "b");
+        assertTrue(K.AD[1] == "a");
     }
 
     @Test
@@ -77,17 +97,35 @@ public class TestAD {
     }
 
     @Test
-    public void TestRemoveFirst() {
+    public void TestRemove() {
         ArrayDeque<Integer> K = new ArrayDeque<>();
         K.addFirst(1);
-        System.out.println("RemoveFirst, should be: 1, real be: " + K.removeFirst());
+        K.addLast(2);
+        K.addLast(3);
+        int x = K.removeFirst();
+        assertTrue(x == 1);
+        assertTrue(K.size == 2);
+        assertTrue(K.capacity == 7);
+        assertTrue(K.first == 1);
+        assertTrue(K.end == 3);
+        assertTrue(K.AD[K.first].equals(2));
+        int a = K.removeLast();
+        assertTrue(a == 3);
+        assertTrue(K.size == 1);
+        assertTrue(K.capacity == 7);
+        assertTrue(K.first == 1);
+        assertTrue(K.end == 2);
+        assertTrue(K.AD[K.first].equals(2));
     }
 
     @Test
     public void TestGet() {
         ArrayDeque<String> K = new ArrayDeque<>();
-        assertEquals(null, K.get(5));
-        K.addFirst("A");
-        assertTrue(K.get(0).equals("A"));
+        K.addFirst("c");
+        K.addFirst("b");
+        K.addFirst("a");
+        assertTrue(K.get(0) == "a");
+        assertTrue(K.get(1) == "b");
+        assertTrue(K.get(2) == "c");
     }
 }
