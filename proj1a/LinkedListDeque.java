@@ -109,14 +109,14 @@ public class LinkedListDeque<T> {
             return null; 
         } else if (index <= (size / 2)) {
             AList Q = sentinelL;
-            while ((index ) > 0) {
+            while (index + 1 > 0) {
                 Q = Q.end;
                 index -= 1;
             }
             return Q.middle;
         } else {
             AList Q = sentinelU;
-            while ((size - index + 1) > 0) {
+            while (size - index > 0) {
                 Q = Q.first;
                 index += 1;
             }
@@ -129,10 +129,10 @@ public class LinkedListDeque<T> {
             return null;
         } else if (index <= (size / 2)) {
             AList T = this.sentinelL.end;
-            return T.getfront(index - 1);
+            return T.getfront(index);
         } else {
             AList T = this.sentinelU.first;
-            return T.getnear(size - index);
+            return T.getnear(size - index - 1);
         }
     }
 
