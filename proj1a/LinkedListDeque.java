@@ -1,5 +1,3 @@
-import Deque.AList;
-
 public class LinkedListDeque<VariacneType> {
 
     public AList sentinelU;
@@ -22,6 +20,18 @@ public class LinkedListDeque<VariacneType> {
            first = f;
            middle = m;
            end = e;
+        }
+
+        private VariacneType getfront(int index) {
+            if (index == 0) {
+                return this.middle;
+            }   return this.end.getfront(index - 1);
+        }
+
+        private VariacneType getnear(int index) {
+            if (index == 0) {
+                return this.middle;
+            }   return this.first.getnear(index - 1);
         }
     }
 
@@ -97,59 +107,34 @@ public class LinkedListDeque<VariacneType> {
     public VariacneType get(int index) {
         if (size == 0 || index > size) {
             return null; 
-        } else if (index < (size / 2)) {
+        } else if (index <= (size / 2)) {
             AList Q = sentinelL;
-            while ((index + 1) > 0) {
-                Q = sentinelL.end;
+            while ((index ) > 0) {
+                Q = Q.end;
                 index -= 1;
             }
             return Q.middle;
         } else {
             AList Q = sentinelU;
-            while ((size - index) > 0) {
-                Q = sentinelU.first;
+            while ((size - index + 1) > 0) {
+                Q = Q.first;
                 index += 1;
             }
             return Q.middle;
         }
     }
 
-    public LinkedListDeque(LinkedListDeque other) {
-        AList T = other.sentinelL.end;
-        AList N = new AList(null, null, null);
-        this.sentinelL.end = N;
-        N.first = this.sentinelL;
-        while (T.end != null) {
-            N.middle = T.middle;
-            N.end = new AList(N, null, null);
-            T = T.end;
-            N = N.end;
-        }
-        this.sentinelU = N;
-    }
-
     public VariacneType getRecursive(int index) {
         if (size == 0 || index > size) {
-            return null; 
-        } else if (index < (size / 2)) {
+            return null;
+        } else if (index <= (size / 2)) {
             AList T = this.sentinelL.end;
-            T.getfront(index);
+            return T.getfront(index - 1);
         } else {
             AList T = this.sentinelU.first;
-            T.getnear(index);
+            return T.getnear(size - index);
         }
     }
 
-    private VariacneType getfront(int index) {
-        if (index = 0) {
-            return this.middle;
-        }   this.end.getfront(index - 1);
-    }
-
-    private VariacneType getnear(int index) {
-        if (index = 0) {
-            return this.middle;
-        }   this.first.getnear(index - 1);
-    }
 
 }

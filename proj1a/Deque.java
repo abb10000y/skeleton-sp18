@@ -23,15 +23,15 @@ public class Deque<VariacneType> {
         }
 
         public VariacneType getfront(int index) {
-            if (index = 0) {
+            if (index == 0) {
                 return this.middle;
-            }   this.end.getfront(index - 1);
+            }   return this.end.getfront(index - 1);
         }
     
         public VariacneType getnear(int index) {
-            if (index = 0) {
+            if (index == 0) {
                 return this.middle;
-            }   this.first.getnear(index - 1);
+            }   return this.first.getnear(index - 1);
         }
     }
 
