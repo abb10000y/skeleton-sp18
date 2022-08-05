@@ -1,7 +1,7 @@
-public class LinkedListDeque<VariacneType> {
+public class LinkedListDeque<T> {
 
-    public AList sentinelU;
-    public AList sentinelL;
+    private AList sentinelU;
+    private AList sentinelL;
     private int size = 0;
 
     public LinkedListDeque() {
@@ -11,31 +11,31 @@ public class LinkedListDeque<VariacneType> {
         sentinelU.first = sentinelL;
     }
 
-    public class AList {
+    private class AList {
         AList first;
-        VariacneType middle;
+        T middle;
         AList end;
 
-        public AList(AList f, VariacneType m, AList e) {
+        public AList(AList f, T m, AList e) {
            first = f;
            middle = m;
            end = e;
         }
 
-        private VariacneType getfront(int index) {
+        private T getfront(int index) {
             if (index == 0) {
                 return this.middle;
             }   return this.end.getfront(index - 1);
         }
 
-        private VariacneType getnear(int index) {
+        private T getnear(int index) {
             if (index == 0) {
                 return this.middle;
             }   return this.first.getnear(index - 1);
         }
     }
 
-    public void addFirst(VariacneType item) {
+    public void addFirst(T item) {
         if (sentinelU.first.equals(sentinelL) == true ) {
             AList T = new AList(sentinelL, item, sentinelU);
             sentinelL.end = T;
@@ -48,7 +48,7 @@ public class LinkedListDeque<VariacneType> {
         size += 1;
     }
 
-    public void addLast(VariacneType item) {
+    public void addLast(T item) {
         if (sentinelU.first.equals(sentinelL) == true ) {
             AList T = new AList(sentinelL, item, sentinelU);
             sentinelL.end = T;
@@ -82,9 +82,9 @@ public class LinkedListDeque<VariacneType> {
         System.out.println("");
     }
 
-    public VariacneType removeFirst() {
+    public T removeFirst() {
         if (this.sentinelL.end != this.sentinelU) {
-            VariacneType T = sentinelL.end.middle;
+            T T = sentinelL.end.middle;
             sentinelL.end = sentinelL.end.end;
             sentinelL.end.first = sentinelL;
             size -= 1;
@@ -93,9 +93,9 @@ public class LinkedListDeque<VariacneType> {
         return null;
     }
 
-    public VariacneType removeLast() {
+    public T removeLast() {
         if (this.sentinelL.end != this.sentinelU) {
-            VariacneType T = sentinelU.first.middle;
+            T T = sentinelU.first.middle;
             sentinelU.first = sentinelU.first.first;
             sentinelU.first.end = sentinelU;
             size -= 1;
@@ -104,7 +104,7 @@ public class LinkedListDeque<VariacneType> {
         return null;
     }
 
-    public VariacneType get(int index) {
+    public T get(int index) {
         if (size == 0 || index > size) {
             return null; 
         } else if (index <= (size / 2)) {
@@ -124,7 +124,7 @@ public class LinkedListDeque<VariacneType> {
         }
     }
 
-    public VariacneType getRecursive(int index) {
+    public T getRecursive(int index) {
         if (size == 0 || index > size) {
             return null;
         } else if (index <= (size / 2)) {
