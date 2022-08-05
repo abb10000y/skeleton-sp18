@@ -1,13 +1,13 @@
-public class ArrayDeque<Type> {
+public class ArrayDeque<T> {
 
-    Object[] AD;
+    private Object[] AD;
     private int first;
     private int end;
     private int capacity;
     private int size;
 
     public ArrayDeque() {
-        AD = (Type[]) new Object[2];
+        AD = (T[]) new Object[2];
         first = 0;
         capacity = 1;
         end = 0;
@@ -16,12 +16,12 @@ public class ArrayDeque<Type> {
 
     private void resize() {
         if (size > 0) {
-            Type[] K = (Type[]) new Object[this.size * 4];
+            T[] K = (T[]) new Object[this.size * 4];
             if (end <= first) {
                 System.arraycopy(AD, first, K, 0, capacity - first + 1);
                 System.arraycopy(AD, 0, K, capacity - first + 1, size - (capacity - first + 1));
             } else {
-                System.arraycopy(AD, first, K,0, end - first + 1);
+                System.arraycopy(AD, first, K, 0, end - first + 1);
             }
             AD = K;
             first = 0;
@@ -30,20 +30,20 @@ public class ArrayDeque<Type> {
         }
     }
 
-    public void addFirst(Type item) {
+    public void addFirst(T item) {
         if (size == capacity + 1) {
             resize();
         }
         if (first == 0) {
             first = capacity;
         } else {
-            first -= 1 ;
+            first -= 1;
         }
         AD[first] = item;
         size += 1;
     }
 
-    public void addLast(Type item) {
+    public void addLast(T item) {
         if (size == capacity + 1) {
             resize();
         }
@@ -84,20 +84,20 @@ public class ArrayDeque<Type> {
         }
     }
 
-    public Type removeFirst() {
+    public T removeFirst() {
         if (size != 0) {
             Object x = AD[first];
             if (first == capacity - 1) {
                 first = 0;
             }
             first += 1;
-            size -=1;
-            return (Type) x;
+            size -= 1;
+            return (T) x;
         }
         return null;
     }
 
-    public Type removeLast() {
+    public T removeLast() {
         if (size != 0) {
             Object x = AD[end];
             if (end == 0) {
@@ -105,12 +105,12 @@ public class ArrayDeque<Type> {
             }
             end -= 1;
             size -= 1;
-            return (Type) x;
+            return (T) x;
         }
         return null;
     }
 
-    public Type get(int index) {
+    public T get(int index) {
         if (size != 0) {
             if (first + index > capacity) {
                 index = first + index - capacity - 1;
@@ -119,9 +119,9 @@ public class ArrayDeque<Type> {
             }
 
             if (AD[index] == null) {
-               return null;
+                return null;
             }
-            return (Type) AD[index];
+            return (T) AD[index];
         }
         return null;
     }
