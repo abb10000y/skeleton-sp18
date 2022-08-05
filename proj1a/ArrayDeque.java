@@ -1,11 +1,19 @@
 public class ArrayDeque<T> {
 
+    /*
     private Object[] AD;
     private int first;
     private int end;
     private int capacity;
     private int size;
-
+    */
+    ///*
+    public Object[] AD;
+    public int first;
+    public int end;
+    public int capacity;
+    public int size;
+    //*/
     public ArrayDeque() {
         AD = (T[]) new Object[2];
         first = 0;
@@ -31,32 +39,36 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        if (size == capacity + 1) {
-            resize();
+        if (item != null) {
+            if (size == capacity + 1) {
+                resize();
+            }
+            if (first == 0) {
+                first = capacity;
+            } else {
+                first -= 1;
+            }
+            AD[first] = item;
+            size += 1;
         }
-        if (first == 0) {
-            first = capacity;
-        } else {
-            first -= 1;
-        }
-        AD[first] = item;
-        size += 1;
     }
 
     public void addLast(T item) {
-        if (size == capacity + 1) {
-            resize();
+        if (item != null) {
+            if (size == capacity + 1) {
+                resize();
+            }
+            if (end == capacity) {
+                end = 0;
+            }
+            AD[end] = item;
+            end += 1;
+            size += 1;
         }
-        if (end == capacity) {
-            end = 0;
-        }
-        AD[end] = item;
-        end += 1;
-        size += 1;
     }
 
     public boolean isEmpty() {
-        if (first == end) {
+        if (size == 0) {
             return true;
         }
         return false;
@@ -99,12 +111,13 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         if (size != 0) {
-            Object x = AD[end];
             if (end == 0) {
                 end = capacity;
+                Object x = AD[0];
             }
             end -= 1;
             size -= 1;
+            Object x = AD[end];
             return (T) x;
         }
         return null;
