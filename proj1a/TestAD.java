@@ -7,23 +7,23 @@ public class TestAD {
 
     @Test
     public void TestCreateAD() {
-        ArrayDeque<Integer> K = new ArrayDeque<>(10);
+        ArrayDeque<Integer> K = new ArrayDeque<>();
     }
 
     @Test
     public void TestAddFirst() {
-        ArrayDeque<String> K = new ArrayDeque<>(10);
+        ArrayDeque<String> K = new ArrayDeque<>();
         K.addFirst("a");
-        if (K.AD[9] == "a") {
+        if (K.AD[1] == "a") {
             System.out.println("AddFirst OK");
         } else {
-            System.out.println("AddFirst NG, should be: 1, real be: " + K.AD[9]);
+            System.out.println("AddFirst NG, should be: 1, real be: " + K.AD[1]);
         }
     }
 
     @Test
     public void TestAddLast() {
-        ArrayDeque<Integer> K = new ArrayDeque<>(10);
+        ArrayDeque<Integer> K = new ArrayDeque<>();
         K.addLast(1);
         if (K.AD[0] == null) {
             System.out.println("AddLast NG, should be: 1, real be: null");
@@ -36,7 +36,7 @@ public class TestAD {
 
     @Test
     public void TestIsEmpty() {
-        ArrayDeque<Integer> K = new ArrayDeque<>(10);
+        ArrayDeque<Integer> K = new ArrayDeque<>();
         if (K.isEmpty() == true) {
             System.out.println("IsEmpty_1 OK");
         } else {
@@ -52,7 +52,7 @@ public class TestAD {
 
     @Test
     public void TestSize() {
-        ArrayDeque<Integer> K = new ArrayDeque<>(10);
+        ArrayDeque<Integer> K = new ArrayDeque<>();
         if (K.size() == 0) {
             System.out.println("Size_1 OK");
         } else {
@@ -68,7 +68,7 @@ public class TestAD {
 
     @Test
     public void TestPrintDeque() {
-        ArrayDeque<Integer> K = new ArrayDeque<>(10);
+        ArrayDeque<Integer> K = new ArrayDeque<>();
         K.addFirst(1);
         K.addLast(2);
         K.addLast(3);
@@ -78,14 +78,14 @@ public class TestAD {
 
     @Test
     public void TestRemoveFirst() {
-        ArrayDeque<Integer> K = new ArrayDeque<>(10);
+        ArrayDeque<Integer> K = new ArrayDeque<>();
         K.addFirst(1);
         System.out.println("RemoveFirst, should be: 1, real be: " + K.removeFirst());
     }
 
     @Test
     public void TestGet() {
-        ArrayDeque<String> K = new ArrayDeque<>(10);
+        ArrayDeque<String> K = new ArrayDeque<>();
         assertEquals(null, K.get(5));
         K.addFirst("A");
         assertTrue(K.get(0).equals("A"));

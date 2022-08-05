@@ -6,10 +6,10 @@ public class ArrayDeque<Type> {
     private int capacity;
     private int size;
 
-    public ArrayDeque(int i) {
-        AD = (Type[]) new Object[i];
+    public ArrayDeque() {
+        AD = (Type[]) new Object[2];
         first = 0;
-        capacity = i;
+        capacity = 1;
         end = 0;
         size = 0;
     }
@@ -17,23 +17,25 @@ public class ArrayDeque<Type> {
     private void resize() {
         if (size > 0) {
             Type[] K = (Type[]) new Object[this.size * 4];
-            System.arraycopy(AD, first, K,0, size - first);
-            if (end < first) {
-                System.arraycopy(AD, 0, K, size - first + 1, end + 1);
+            if (end <= first) {
+                System.arraycopy(AD, first, K, 0, capacity - first + 1);
+                System.arraycopy(AD, 0, K, capacity - first + 1, size - (capacity - first + 1));
+            } else {
+                System.arraycopy(AD, first, K,0, end - first + 1);
             }
             AD = K;
             first = 0;
             end = size;
-            capacity = size * 4;
+            capacity = size * 4 - 1;
         }
     }
 
     public void addFirst(Type item) {
-        if (size == capacity) {
+        if (size == capacity + 1) {
             resize();
         }
         if (first == 0) {
-            first = capacity - 1;
+            first = capacity;
         } else {
             first -= 1 ;
         }
@@ -42,10 +44,10 @@ public class ArrayDeque<Type> {
     }
 
     public void addLast(Type item) {
-        if (size == capacity) {
+        if (size == capacity + 1) {
             resize();
         }
-        if (end == capacity - 1) {
+        if (end == capacity) {
             end = 0;
         }
         AD[end] = item;
@@ -67,8 +69,8 @@ public class ArrayDeque<Type> {
     public void printDeque() {
         if (size > 0) {
             if (first < end) {
-                for (int i = first; i <= end; i++) {
-                    System.out.println(AD[i] + " ");
+                for (int i = first; i < end; i++) {
+                    System.out.print(AD[i] + " ");
                 }
             } else {
                 for (int i = first; i < capacity; i++) {
