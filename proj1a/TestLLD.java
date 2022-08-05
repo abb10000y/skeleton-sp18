@@ -20,4 +20,13 @@ public class TestLLD {
 
     }
 
+    @Test
+    public void t() {
+        LinkedListDeque<Integer> A = new LinkedListDeque();
+        A.addLast(2);
+        A.addLast(3);
+        A.addFirst(4);
+        A.get(2);
+    }
+
 }
