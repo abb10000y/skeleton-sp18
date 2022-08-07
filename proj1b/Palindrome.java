@@ -24,22 +24,23 @@ public class Palindrome {
         return isPalindromeHelp(K);
     }
 
-    private boolean isPalindromeOffByOneHelp(Deque<Character> K, OffByOne N) {
+    private boolean isPalindromeOffByOneHelp(Deque<Character> K, CharacterComparator cc) {
         Character i = K.removeFirst();
         Character j = K.removeLast();
         if (i == null || j == null) {
             return true;
-        } else if (!N.equalChars(i, j)) {
+        } else if (!cc.equalChars(i, j)) {
             return false;
         }
-        return isPalindromeOffByOneHelp(K, N);
+        return isPalindromeOffByOneHelp(K, cc);
     }
 
-    public boolean isPalindrome(String word, OffByOne N) {
+    public boolean isPalindrome(String word, CharacterComparator cc) {
         Deque<Character> K = wordToDeque(word);
-        return isPalindromeOffByOneHelp(K, N);
+        return isPalindromeOffByOneHelp(K, cc);
     }
 
+    /*
     private boolean isPalindromeOffByNHelp(Deque<Character> K, OffByN N) {
         Character i = K.removeFirst();
         Character j = K.removeLast();
@@ -56,4 +57,5 @@ public class Palindrome {
         return isPalindromeOffByNHelp(K, N);
     }
 
+    */
 }
