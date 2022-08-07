@@ -1,5 +1,3 @@
-import java.util.TreeMap;
-
 public class Palindrome {
 
     public Deque<Character> wordToDeque(String word) {
@@ -31,7 +29,7 @@ public class Palindrome {
         Character j = K.removeLast();
         if (i == null || j == null) {
             return true;
-        } else if (!N.equalChars(i,j)) {
+        } else if (!N.equalChars(i, j)) {
             return false;
         }
         return isPalindromeOffByOneHelp(K, N);
@@ -47,7 +45,7 @@ public class Palindrome {
         Character j = K.removeLast();
         if (i == null || j == null) {
             return true;
-        } else if (!N.equalChars(i,j)) {
+        } else if (!N.equalChars(i, j)) {
             return false;
         }
         return isPalindromeOffByNHelp(K, N);
